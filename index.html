@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/x-icon" href="./imagens/favicon.ico">
+  <title>CodeMusic</title>
+</head>
+<body>
+  <div class="container">
+    <header class="topo">
+      <div class="logo">
+        <img src="./imagens/logo_CodeMusic.png" alt="Logo-CodeMusic">
+        <h1>CodeMusic</h1>
+      </div>
+      <div class="btn-home"> <button>Home</button></div>
+      <div class="busca">
+        <form action="/buscar" method="get">
+          <input type="search" name="q" placeholder="Pesquisar...">
+          <button type="submit">Buscar</button>
+        </form>
+      </div>
+    </header>
+    <nav class="sidebar">
+      <h5>Sua Biblioteca</h5>
+      <div class="menu">
+        <p>Playlist</p>
+        <p>Albuns</p>
+      </div>
+
+      <div class="lista-playlist">
+        <ul></ul>
+      </div>
+    </nav>
+    <main></main>
+    <footer class="fim">
+      <h5>Musica</h5>
+    </footer>
+  </div>
+  <script src="index.js"></script>
+</body>
+</html>

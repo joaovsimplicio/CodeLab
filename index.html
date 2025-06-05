@@ -16,8 +16,8 @@
       </div>
       <!-- <div class="btn-home"> <button>Home</button></div> -->
       <div class="busca">
-        <form action="/buscar" method="get">
-          <input type="search" name="q" placeholder="Pesquisar...">
+        <form id="formBusca" action="/buscador" method="get"> 
+          <input type="search" id="campoBuscaInput" name="q" placeholder="Pesquisar..."> 
           <button type="submit">Buscar</button>
         </form>
       </div>
@@ -39,6 +39,9 @@
     </nav>
     <main class="principal">
       <p>Pesquise uma música ou um álbum do seu artista favorito!</p>
+      <div id="resultado">
+        
+      </div>
     </main>
     <footer class="fim">
       <div class="nome-musica">

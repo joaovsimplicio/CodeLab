@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Aula 11 - Exercício 1</title>
+    </head>
+    <body>
+        <h1>Buscador de Álbums</h1>
+        
+        <input id="nome_album" placeholder="Digite o nome de um álbum">
+        <button id="buscar" onclick="buscador()">Buscar capa</button>
+        <div id="resultado"></div>
+        
+        <script>
+            async function buscador()
+            {
+                /* Pega o termo de busca e o elemento de saída DENTRO da função
+                
+                A função encodeURIComponent() em JavaScript é usada para codificar caracteres 
+                especiais em uma string para que ela possa ser usada de forma segura como parte 
+                de uma URL (mais especificamente, um componente de um URI - Uniform Resource Identifier). 
+                
+                Garante que o valor enviado como parte de uma URL seja transmitido exatamente 
+                como pretendido, sem que caracteres especiais interfiram na estrutura da URL. */
+                const termoBusca = encodeURIComponent(document.getElementById('nome_album').value);
+                const saida = document.getElementById("resultado");
+                
+                // Bloco try... catch para tratar possíveis erros
+                try // Bloco com o código suspeito de dar erro
+                {
+                    
+                    const deezerApiUrl = `https://api.deezer.com/search/track?q=${termoBusca}`;
+                    const url = `https://corsproxy.io/?${encodeURIComponent(deezerApiUrl)}`;
+                    
+                    const response = await fetch (url)
+                    
+                    if (!response.ok) /* Verifica se a requisição HTTP foi bem-sucedida.
+                    Ao fazer uma chamada fetch, e a Promise é resolvida, ela retorna um objeto Response (que chamei de response na sua variável). 
+                    Este objeto contém várias informações sobre a resposta do servidor à sua requisição.
+                    A propriedade response.ok é um booleano (true ou false) que indica se a requisição HTTP foi bem-sucedida. */
+                    
+                    {
+                        throw new Error(`Erro na API: ${response.status} - ${response.statusText}`);
+                    }
+                    
+                    const dados = await response.json(); // Converte a resposta para JSON
+
+                    if (dados.data && dados.data.length > 0) 
+                    {
+                        const primeiraMusica = dados.data[0];
+                        const urlCapa = primeiraMusica.album.cover_big; // Pega a URL da capa média
+
+                        if (urlCapa) 
+                        {
+                            saida.innerHTML = `<img src="${urlCapa}" alt="Capa do álbum de ${primeiraMusica.title}">`;
+                            saida.innerHTML += `<p>${primeiraMusica.title} - ${primeiraMusica.artist.name}</p>`;
+                        } 
+                        else 
+                        {
+                            saida.innerHTML = '<p>Capa do álbum não encontrada para esta música.</p>';
+                        }
+                    } 
+                    else 
+                    {
+                        saida.innerHTML = '<p>Nenhuma música encontrada com esse termo.</p>';
+                    }
+                }
+                catch (error) 
+                {
+                    console.error("Erro ao buscar capa:", error);
+                    // 'saida' precisa estar acessível aqui ou ser redefinida.
+                    // Se 'saida' foi definida dentro do try, ou antes da função, ela estará acessível.
+                    const saidaDiv = document.getElementById("resultado"); // Garante que 'saidaDiv' está definida
+                    saidaDiv.innerHTML = `<p>Ocorreu um erro: ${error.message}</p>`;
+                }    
+                
+            }
+        </script>
+    </body>
+</html>

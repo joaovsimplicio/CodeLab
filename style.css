@@ -104,3 +104,36 @@ body {
   height: 10vh;
   background-color: #141414;
 }
+
+main.principal {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+.song_card {
+  background-color: #282828;
+  border-radius: 8px;
+  padding: 16px;
+  text-align: center;
+  color: white;
+  font-family: sans-serif;
+  transition: background-color 0.3s;
+}
+
+.song_card:hover {
+  background-color: #404040;
+}
+
+.song_card img {
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+  margin-bottom: 12px;
+}
+
+.song_card p {
+  font-size: 14px;
+  line-height: 1.3;
+}

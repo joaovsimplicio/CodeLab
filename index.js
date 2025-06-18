@@ -8,7 +8,8 @@ document.getElementById("searchform").addEventListener('submit', async function(
         return;
     }
 
-    const url = `/search?q=${encodeURIComponent(termo)}`;
+    const DeezerAPIUrl = `https://api.deezer.com/search/track?q=${termo}`;
+    const url = `https://corsproxy.io/?${encodeURIComponent(DeezerAPIUrl)}`;
 
     resultadosContainer.innerHTML = '<p>Buscando...</p>';
 

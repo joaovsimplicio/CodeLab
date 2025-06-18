@@ -57,6 +57,8 @@ body {
 
 .sidebar{
   margin: 10px;
+  margin-bottom: 0px;
+  margin-top: 0px;
   grid-area: sidebar;
   width: 309px;
   background-color: #211f1f;
@@ -85,6 +87,8 @@ body {
   background-image: linear-gradient(to bottom, #4fc4af, #325953,  #211f1f, #211f1f, #211f1f, #211f1f);  
   border-radius: 10px;
   margin: 10px;
+  margin-bottom: 0px;
+  margin-top: 0px;
   margin-right: 12px;
   padding: 15px;
 }
@@ -95,7 +99,7 @@ body {
   display: flex;
   justify-content: space-between;
   padding: 20px;
-  height: 10vh;
+  height: 9vh;
   background-color: #141414;
 }
 
@@ -104,6 +108,10 @@ main.principal {
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
   gap: 20px;
   padding: 20px;
+}
+
+.principal .textoInicial{
+  grid-column: 1 / -1;
 }
 
 .song_card {
